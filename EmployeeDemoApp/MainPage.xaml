@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="EmployeeDemoApp.MainPage"
+             
+             >
+
+    <ScrollView>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="350" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+            </Grid.ColumnDefinitions>
+            
+            <!-- This defines the layout/template for the listview. -->
+            <!-- The listview is populated in the .cs file. -->
+            <ListView ItemsSource="{Binding DisplayedEmployees}" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
+                <ListView.Header>
+                    <!-- Header Row -->
+                    <Grid>
+                        <!-- The widths must be set to an exact value so they align nicely. -->
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100" />
+                            <ColumnDefinition Width="150" />
+                            <ColumnDefinition Width="75" />
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Column="0" Text="ID" FontSize="16" Padding="15" />
+                        <Label Grid.Column="1" Text="Name" FontSize="16" Padding="15" />
+                        <Label Grid.Column="2" Text="Active" FontSize="16" Padding="15" />
+                    </Grid>
+                </ListView.Header>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <!-- Data Rows -->
+                        <ViewCell>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="100" />
+                                    <ColumnDefinition Width="150" />
+                                    <ColumnDefinition Width="75" />
+                                </Grid.ColumnDefinitions>
+                                <!-- Each label must be binded to an Employee property -->
+                                <!-- The spelling must be EXACT! -->
+                                <Label Grid.Column="0" Text="{Binding Id}" Padding="15" />
+                                <Label Grid.Column="1" Text="{Binding Name}" Padding="15" />
+                                <Label Grid.Column="2" Text="{Binding IsActive}" Padding="15" />
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+            <StackLayout Padding="20" Grid.Row="1" Grid.Column="0">
+                <Label FontSize="Title" Margin="0,10,0,10">Find Employee</Label>
+                <Entry x:Name="findEmployeeIdEntry" Placeholder="Employee ID" Margin="0,10,0,10" Keyboard="Numeric" />
+                <Entry x:Name="findEmployeeNameEntry" Placeholder="Employee Name" Margin="0,10,0,10" />
+                <!-- The picker items are populated from the .cs file. -->
+                <Picker x:Name="findEmployeeStatusPicker" Title="Select Status" Margin="0,10,0,10" ItemsSource="{Binding FindStatuses}" SelectedIndex="0" />
+                <Button Text="Find" Margin="0,10,0,10" Clicked="FindButton_Clicked" />
+            </StackLayout>
+
+            <StackLayout Padding="20" Grid.Row="1" Grid.Column="1">
+                <Label FontSize="Title" Margin="0,10,0,10">Add Employee</Label>
+                <Entry x:Name="addEmployeeIdEntry" Placeholder="Employee ID" Margin="0,10,0,10" Keyboard="Numeric" />
+                <Entry x:Name="addEmployeeNameEntry" Placeholder="Employee Name" Margin="0,10,0,10" />
+                <!-- The picker items are populated from the .cs file. -->
+                <Picker x:Name="addEmployeeStatusPicker" Title="Select Status" Margin="0,10,0,10" ItemsSource="{Binding AddStatuses}" SelectedIndex="0" />
+                <Button Text="Add" Margin="0,10,0,10" Clicked="AddButton_Clicked" />
+            </StackLayout>
+        </Grid>
+        
+    </ScrollView>
+
+</ContentPage>
