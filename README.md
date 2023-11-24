@@ -1,5 +1,5 @@
 # Employee Demo App
-Author: Nick Hamnett
+Author: Nick Hamnett  
 Date: November 23, 2023
 
-This is a MAUI app that demonstrates working with a MySQL/MariaDB database.
+Explore this MAUI application, designed to illustrate seamless integration with MySQL/MariaDB databases.
